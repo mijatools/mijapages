@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Costo de Banner</title>
+  <!-- MDBootstrap CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+    rel="stylesheet"
+  />
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+    .centered-panel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="form-outline mb-4">
+        <input type="search" id="search" class="form-control" placeholder="Buscar tarjetas..." />
+        <label class="form-label" for="search">Buscar</label>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row card-container">
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lona normal</h5>
+          <p class="card-text">Contenido de la tarjeta 1.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lona Panaflex</h5>
+          <p class="card-text">Contenido de la tarjeta 2.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Lona Mate</h5>
+          <p class="card-text">Contenido de la tarjeta 3.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Adhesivo Brillo</h5>
+          <p class="card-text">Contenido de la tarjeta 4.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Adhesivo Mate</h5>
+          <p class="card-text">Contenido de la tarjeta 5.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Acrilico</h5>
+          <p class="card-text">Contenido de la tarjeta 6.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Trupan</h5>
+          <p class="card-text">Contenido de la tarjeta 7.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Luces Led</h5>
+          <p class="card-text">Contenido de la tarjeta 8.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-item">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Troquel Vinil</h5>
+          <p class="card-text">Contenido de la tarjeta 9.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MDBootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- FontAwesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<script>
+  $(function() {
+    const cardTitles = [
+      "Lona normal",
+      "Lona Panaflex",
+      "Adhesivo Brillo",
+      "Adhesivo Mate",
+      "Acrilico",
+      "Trupan",
+      "Luces Led",
+      "Troquel Vinil"
+    
+
+
+    ];
+
+    $("#search").autocomplete({
+      source: cardTitles,
+      select: function(event, ui) {
+        const selectedTitle = ui.item.value.toLowerCase();
+        const cards = document.querySelectorAll('.card-item');
+
+        cards.forEach(function(card) {
+          const title = card.querySelector('.card-title').innerText.toLowerCase();
+
+          if (title === selectedTitle) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    $("#search").on('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const cards = document.querySelectorAll('.card-item');
+
+      cards.forEach(function(card) {
+        const title = card.querySelector('.card-title').innerText.toLowerCase();
+        const text = card.querySelector('.card-text').innerText.toLowerCase();
+
+        if (title.includes(searchTerm) || text.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
